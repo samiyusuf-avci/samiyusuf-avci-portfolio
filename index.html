@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sami Yusuf Avcı - Bilgisayar Mühendisliği Öğrencisi & Yazılım Geliştirici Kişisel Portfolyosu. Kartezya stajyer deneyimi ve projeleri.">
+    <title>Sami Yusuf Avcı | Portfolyo</title>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* CSS Değişkenleri & Tasarım Sistemi */
+        :root {
+            --bg-primary: #0b0f19;
+            --bg-secondary: #111827;
+            --bg-card: #1e293b;
+            --bg-card-hover: rgba(30, 41, 59, 0.8);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent-blue: #38bdf8;
+            --accent-indigo: #6366f1;
+            --accent-gradient: linear-gradient(135deg, #6366f1 0%, #38bdf8 100%);
+            --accent-gradient-hover: linear-gradient(135deg, #4f46e5 0%, #0ea5e9 100%);
+            --border-color: rgba(51, 65, 85, 0.6);
+            --border-hover: rgba(71, 85, 105, 0.8);
+            --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-normal: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        /* Reset & Temel Stiller */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Arka Plan Glow Efektleri */
+        .glowing-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.15;
+            mix-blend-mode: screen;
+            animation: float-orb 20s infinite alternate ease-in-out;
+        }
+
+        .orb-1 {
+            width: 500px;
+            height: 500px;
+            background: var(--accent-indigo);
+            top: -100px;
+            right: -100px;
+        }
+
+        .orb-2 {
+            width: 400px;
+            height: 400px;
+            background: var(--accent-blue);
+            top: 40%;
+            left: -150px;
+            animation-delay: -5s;
+        }
+
+        .orb-3 {
+            width: 450px;
+            height: 450px;
+            background: #a855f7;
+            bottom: -100px;
+            right: 10%;
+            animation-delay: -10s;
+        }
+
+        @keyframes float-orb {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(50px, 80px) scale(1.1); }
+        }
+
+        /* Grid Pattern */
+        .grid-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            mask-image: radial-gradient(ellipse at top, black 40%, transparent 80%);
+            -webkit-mask-image: radial-gradient(ellipse at top, black 40%, transparent 80%);
+        }
+
+        /* Grid & Flex Container */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navigasyon Barı (Sticky Navbar) */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            background: rgba(11, 15, 25, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            transition: var(--transition-fast);
+        }
+
+        header.scrolled {
+            background: rgba(11, 15, 25, 0.85);
+            border-bottom-color: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.3);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+            transition: var(--transition-fast);
+        }
+
+        header.scrolled .nav-container {
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: var(--transition-fast);
+            position: relative;
+            padding: 8px 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-gradient);
+            transition: var(--transition-fast);
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: var(--text-primary);
+        }
+
+        /* Hamburger Menü (Mobil) */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .hamburger {
+            display: block;
+            position: relative;
+            width: 24px;
+            height: 2px;
+            background: var(--text-primary);
+            transition: var(--transition-fast);
+        }
+
+        .hamburger::before, .hamburger::after {
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 2px;
+            background: var(--text-primary);
+            transition: var(--transition-fast);
+        }
+
+        .hamburger::before { top: -6px; }
+        .hamburger::after { bottom: -6px; }
+
+        /* Mobil Menu Aktif Durumu */
+        .mobile-menu-btn.open .hamburger {
+            background: transparent;
+        }
+        .mobile-menu-btn.open .hamburger::before {
+            transform: rotate(45deg);
+            top: 0;
+        }
+        .mobile-menu-btn.open .hamburger::after {
+            transform: rotate(-45deg);
+            bottom: 0;
+        }
+
+        /* Kahraman Bölümü (Hero Section) */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            color: #a5b4fc;
+            padding: 6px 16px;
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 24px;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-badge span {
+            width: 6px;
+            height: 6px;
+            background-color: var(--accent-blue);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--accent-blue);
+            display: inline-block;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+
+        .hero h1 span {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        .hero p {
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            max-width: 600px;
+            line-height: 1.4;
+        }
+
+        /* Butonlar */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--accent-gradient);
+            color: white;
+            text-decoration: none;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            box-shadow: 0 4px 20px -2px rgba(99, 102, 241, 0.4);
+            transition: var(--transition-normal);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: var(--accent-gradient-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -3px rgba(99, 102, 241, 0.5);
+        }
+
+        .btn svg {
+            transition: var(--transition-fast);
+        }
+
+        .btn:hover svg {
+            transform: translateX(4px);
+        }
+
+        /* Bölüm Stilleri */
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-header {
+            margin-bottom: 60px;
+        }
+
+        .section-subtitle {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-blue);
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 40px;
+            height: 3px;
+            background: var(--accent-gradient);
+            border-radius: 2px;
+        }
+
+        /* Hakkımda Bölümü */
+        .about-layout {
+            display: grid;
+            grid-template-columns: 3fr 2fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .about-text {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+        }
+
+        .about-text strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* Yetenekler / Skills Kartı */
+        .skills-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 10px 30px -15px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skills-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--accent-gradient);
+        }
+
+        .skills-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 24px;
+            font-weight: 700;
+        }
+
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-badge {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--text-secondary);
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: var(--transition-fast);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .skill-badge:hover {
+            background: rgba(56, 189, 248, 0.1);
+            border-color: rgba(56, 189, 248, 0.3);
+            color: var(--accent-blue);
+            transform: translateY(-2px);
+        }
+
+        .skill-badge svg {
+            width: 14px;
+            height: 14px;
+            color: var(--accent-blue);
+        }
+
+        /* Deneyim Bölümü */
+        .experience-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .experience-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 40px;
+            position: relative;
+            box-shadow: 0 15px 35px -15px rgba(0,0,0,0.4);
+            transition: var(--transition-normal);
+            margin-bottom: 30px;
+        }
+
+        .experience-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .experience-card:hover {
+            border-color: var(--border-hover);
+            box-shadow: 0 20px 40px -15px rgba(0,0,0,0.5);
+            transform: translateY(-2px);
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding-bottom: 20px;
+        }
+
+        .role-info h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .company-tag {
+            color: var(--accent-blue);
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .company-tag svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .experience-date {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .experience-body p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .experience-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .exp-badge {
+            font-size: 0.8rem;
+            background: rgba(99, 102, 241, 0.08);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            color: #a5b4fc;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+
+        /* Projeler Bölümü */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 36px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            transition: var(--transition-normal);
+            overflow: hidden;
+            box-shadow: 0 10px 30px -15px rgba(0,0,0,0.3);
+        }
+
+        /* Neon Glow Efekti Hover Durumunda */
+        .project-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 10% 10%, rgba(99, 102, 241, 0.1), transparent 50%);
+            opacity: 0;
+            transition: var(--transition-normal);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .project-card:hover::after {
+            opacity: 1;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(99, 102, 241, 0.4);
+            box-shadow: 0 20px 45px -15px rgba(99, 102, 241, 0.15);
+        }
+
+        .project-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(56, 189, 248, 0.08);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-blue);
+            margin-bottom: 24px;
+            transition: var(--transition-normal);
+            z-index: 2;
+        }
+
+        .project-card:hover .project-icon {
+            background: var(--accent-gradient);
+            color: white;
+            border-color: transparent;
+            transform: scale(1.05);
+        }
+
+        .project-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 14px;
+            z-index: 2;
+        }
+
+        .project-desc {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 24px;
+            flex-grow: 1;
+            z-index: 2;
+        }
+
+        .project-footer {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: auto;
+            z-index: 2;
+        }
+
+        /* İletişim & Footer Bölümü */
+        footer {
+            background-color: var(--bg-secondary);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 80px 0 40px 0;
+            position: relative;
+        }
+
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+
+        .contact-info h2 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 16px;
+        }
+
+        .contact-info p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            margin-bottom: 32px;
+            max-width: 440px;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            transition: var(--transition-fast);
+        }
+
+        .contact-item:hover {
+            color: var(--text-primary);
+            background: rgba(56, 189, 248, 0.05);
+            border-color: rgba(56, 189, 248, 0.2);
+            transform: translateX(4px);
+        }
+
+        .contact-item .icon-wrapper {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-blue);
+            transition: var(--transition-fast);
+        }
+
+        .contact-item:hover .icon-wrapper {
+            background: rgba(56, 189, 248, 0.1);
+        }
+
+        /* Sağ Taraf - Sosyal & Github Kartı */
+        .github-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 15px 35px -15px rgba(0,0,0,0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .github-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top right, rgba(99, 102, 241, 0.08), transparent 60%);
+            pointer-events: none;
+        }
+
+        .github-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #111827 0%, #1e293b 100%);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px auto;
+            color: var(--accent-blue);
+        }
+
+        .github-box h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .github-box p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 30px;
+        }
+
+        .github-btn {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: #24292f;
+            color: white;
+            text-decoration: none;
+            padding: 14px 0;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: var(--transition-fast);
+        }
+
+        .github-btn:hover {
+            background: #2f363d;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px -4px rgba(0,0,0,0.4);
+        }
+
+        /* Telif Hakkı (Copyright) */
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer-bottom p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .back-to-top {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: var(--transition-fast);
+        }
+
+        .back-to-top:hover {
+            color: var(--accent-blue);
+        }
+
+        /* Scroll Reveal (Kaydırma Animasyonları) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Yüklenme Animasyonu (Giriş) */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- MEDYA SORGULARI (RESPONSIVE) --- */
+
+        /* Mobil Menu Drawer Stili */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+                z-index: 110;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 75%;
+                max-width: 320px;
+                height: 100vh;
+                background: #0d1321;
+                border-left: 1px solid rgba(255, 255, 255, 0.05);
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start;
+                padding: 40px;
+                gap: 40px;
+                transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                z-index: 105;
+                box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+            }
+
+            .nav-links.open {
+                right: 0;
+            }
+
+            .nav-links a {
+                font-size: 1.2rem;
+                width: 100%;
+            }
+
+            .about-layout {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .contact-layout {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            .hero {
+                padding-top: 80px;
+            }
+
+            section {
+                padding: 70px 0;
+            }
+
+            .experience-card {
+                padding: 24px;
+            }
+
+            .project-card {
+                padding: 24px;
+            }
+
+            .github-box {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Arka Plan Görselleri ve Işıltıları -->
+    <div class="glowing-bg">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        <div class="grid-overlay"></div>
+    </div>
+
+    <!-- Navigasyon Barı -->
+    <header id="header">
+        <div class="container nav-container">
+            <a href="#hero" class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="16 18 22 12 16 6"></polyline>
+                    <polyline points="8 6 2 12 8 18"></polyline>
+                </svg>
+                Sami Yusuf <span>Avcı</span>
+            </a>
+            
+            <nav>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#hakkimda" class="nav-item">Hakkımda</a></li>
+                    <li><a href="#deneyim" class="nav-item">Deneyim</a></li>
+                    <li><a href="#projeler" class="nav-item">Projeler</a></li>
+                    <li><a href="#iletisim" class="nav-item">İletişim</a></li>
+                </ul>
+            </nav>
+
+            <button class="mobile-menu-btn" id="menu-btn" aria-label="Menüyü Aç/Kapat">
+                <span class="hamburger"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Kahraman Bölümü (Hero Section) -->
+    <section id="hero" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span></span> Keşfe Açık & Aktif Öğrenen
+                </div>
+                <h1>Merhaba, Ben <br><span>Sami Yusuf Avcı</span></h1>
+                <p>Bilgisayar Mühendisliği Öğrencisi & Yazılım Geliştirici</p>
+                <a href="#projeler" class="btn">
+                    Projelerimi Gör
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hakkımda & Eğitim Bölümü -->
+    <section id="hakkimda" class="reveal">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Hikayem</span>
+                <h2 class="section-title">Hakkımda</h2>
+            </div>
+            
+            <div class="about-layout">
+                <div class="about-text">
+                    <p>
+                        Merhaba! Ben <strong>Sami Yusuf Avcı</strong>. Kahramanmaraş Sütçü İmam Üniversitesi'nde 
+                        <strong>Bilgisayar Mühendisliği</strong> öğrencisiyim.
+                    </p>
+                    <p>
+                        Teknolojinin gücüyle gerçek dünya problemlerine pratik, şık ve ölçeklenebilir çözümler üretmeyi hedefleyen, 
+                        meraklı bir yazılım geliştirici adayıyım. Akademik dünyada edindiğim teorik temelleri, 
+                        <strong>Kartezya</strong> bünyesinde gerçekleştirdiğim stajyerlik deneyimimle harmanlayarak sektörel pratiklere dönüştürüyorum.
+                    </p>
+                    <p>
+                        Yazılım geliştirirken sadece çalışan bir kod yazmaya değil; temiz, sürdürülebilir ve kullanıcı deneyimini ön planda tutan 
+                        mimariler inşa etmeye özen gösteriyorum.
+                    </p>
+                </div>
+
+                <div class="skills-card">
+                    <h3>Yetenekler & Teknolojiler</h3>
+                    <div class="skills-grid">
+                        <div class="skill-badge">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                            HTML5 / CSS3
+                        </div>
+                        <div class="skill-badge">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                            C
+                        </div>
+                        <div class="skill-badge">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                            C++
+                        </div>
+                        <div class="skill-badge">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                            Java
+                        </div>
+                        <div class="skill-badge">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                            Python
+                        </div>
+                        <div class="skill-badge">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                            SQL & Databases
+                        </div>
+                        <div class="skill-badge">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                            Git & GitHub
+                        </div>
+                        <div class="skill-badge">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                            Algorithm Design
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deneyim Bölümü -->
+    <section id="deneyim" class="reveal">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Profesyonel Yolculuk</span>
+                <h2 class="section-title">Deneyim</h2>
+            </div>
+            
+            <div class="experience-container">
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <div class="role-info">
+                            <h3>Stajyer Geliştirici</h3>
+                            <div class="company-tag">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                                </svg>
+                                Kartezya
+                            </div>
+                        </div>
+                        <div class="experience-date">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                            </svg>
+                            Staj Dönemi
+                        </div>
+                    </div>
+                    <div class="experience-body">
+                        <p>
+                            Kartezya ekibinde stajyer yazılım geliştirici olarak görev aldım. Bu süreçte şirketin iç süreçlerini optimize eden
+                            uygulamaların geliştirilmesinde, algoritma tasarımı ve veri yönetimi aşamalarında aktif roller üstlendim.
+                            Yazılım mimarileri, takım içi iş birliği ve profesyonel proje süreçleri konularında pratik deneyimler kazandım.
+                        </p>
+                        <div class="experience-tags">
+                            <span class="exp-badge">Web Development</span>
+                            <span class="exp-badge">Veri Yönetimi</span>
+                            <span class="exp-badge">UI/UX Tasarımı</span>
+                            <span class="exp-badge">Algoritma Tasarımı</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <div class="role-info">
+                            <h3>Proje Geliştirici</h3>
+                            <div class="company-tag">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                                </svg>
+                                Teknokent
+                            </div>
+                        </div>
+                        <div class="experience-date">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                            </svg>
+                            Ar-Ge Çalışmaları
+                        </div>
+                    </div>
+                    <div class="experience-body">
+                        <p>
+                            Teknokent bünyesinde yer alan teknoloji ve Ar-Ge firmalarında farklı ölçekteki projelerin geliştirilme aşamalarında aktif rol aldım. 
+                            Proje gereksinimlerinin analiz edilmesi, prototiplerin kodlanması, yazılım testleri ve takım içi iş bölümlerinin koordineli bir şekilde yürütülmesine katkı sundum.
+                        </p>
+                        <div class="experience-tags">
+                            <span class="exp-badge">Ar-Ge Projeleri</span>
+                            <span class="exp-badge">Yazılım Test & Prototipleme</span>
+                            <span class="exp-badge">Geliştirme & Entegrasyon</span>
+                            <span class="exp-badge">Takım Çalışması</span>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </section>
+
+    <!-- Projeler Bölümü -->
+    <section id="projeler" class="reveal">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Neler Ürettim?</span>
+                <h2 class="section-title">Projeler</h2>
+            </div>
+
+            <div class="projects-grid">
+                <!-- Proje 1 -->
+                <div class="project-card">
+                    <div>
+                        <div class="project-icon">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                        </div>
+                        <h3 class="project-title">Personel Kartezya</h3>
+                        <p class="project-desc">
+                            Şirket içi çalışan yönetim süreçlerini dijitalleştiren ve optimize eden kapsamlı bir yönetim paneli yazılımı. 
+                            Personel verilerini, performans takibini ve departman rollerini kullanıcı dostu, dinamik bir arayüzle modernize etmek amacıyla geliştirilmiştir.
+                        </p>
+                    </div>
+                    <div class="project-footer">
+                        <span class="exp-badge">Yönetim Paneli</span>
+                        <span class="exp-badge">Dashboard</span>
+                        <span class="exp-badge">Kullanıcı Yönetimi</span>
+                    </div>
+                </div>
+
+                <!-- Proje 2 -->
+                <div class="project-card">
+                    <div>
+                        <div class="project-icon">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                <line x1="11" y1="8" x2="11" y2="14"></line>
+                                <line x1="8" y1="11" x2="14" y2="11"></line>
+                            </svg>
+                        </div>
+                        <h3 class="project-title">CV Search</h3>
+                        <p class="project-desc">
+                            İnsan kaynakları süreçlerini hızlandırmak amacıyla geliştirilmiş, aday CV'lerini belirli kriterlere ve şirket ihtiyaçlarına göre analiz eden algoritma tabanlı bir puanlama sistemi. 
+                            CV'leri yetenek ve deneyim önceliklerine göre skorlayarak en uygun adayları otomatik olarak listeler ve sıralar.
+                        </p>
+                    </div>
+                    <div class="project-footer">
+                        <span class="exp-badge">Arama Algoritmaları</span>
+                        <span class="exp-badge">Puanlama Sistemi</span>
+                        <span class="exp-badge">İK Analitiği</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- İletişim & Footer Bölümü -->
+    <footer id="iletisim">
+        <div class="container">
+            <div class="contact-layout reveal">
+                <div class="contact-info">
+                    <span class="section-subtitle">Bağlantıda Kalalım</span>
+                    <h2>Benimle İletişime Geçin</h2>
+                    <p>
+                        Projelerim hakkında daha fazla bilgi almak, iş birliği yapmak ya da sadece sohbet etmek isterseniz bana aşağıdaki kanallardan ulaşabilirsiniz.
+                    </p>
+                    
+                    <div class="contact-links">
+                        <a href="mailto:syusufavci@gmail.com" class="contact-item">
+                            <div class="icon-wrapper">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                </svg>
+                            </div>
+                            <div>
+                                <div style="font-size: 0.75rem; color: var(--text-muted);">E-POSTA</div>
+                                syusufavci@gmail.com
+                            </div>
+                        </a>
+                        
+                        <a href="tel:05387342577" class="contact-item">
+                            <div class="icon-wrapper">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <div style="font-size: 0.75rem; color: var(--text-muted);">TELEFON</div>
+                                0538 734 25 77
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- GitHub Kartı -->
+                <div class="github-box">
+                    <div class="github-avatar">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                        </svg>
+                    </div>
+                    <h3>GitHub Profilim</h3>
+                    <p>Projelerimin açık kaynak kodlarına erişmek ve gelişim sürecimi incelemek için GitHub profilimi ziyaret edebilirsiniz.</p>
+                    <a href="https://github.com/samiyusuf-avci" target="_blank" rel="noopener noreferrer" class="github-btn">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                            <polyline points="15 3 21 3 21 9"></polyline>
+                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>
+                        @samiyusuf-avci
+                    </a>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <p>&copy; 2026 Sami Yusuf Avcı. Tüm Hakları Saklıdır.</p>
+                <a href="#hero" class="back-to-top">
+                    Yukarı Git
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="19" x2="12" y2="5"></line>
+                        <polyline points="5 12 12 5 19 12"></polyline>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript: Mobil Menü, Kaydırma Efektleri ve Aktif Menü Linkleri -->
+    <script>
+        // Mobil Menü Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const navLinks = document.getElementById('nav-links');
+        const navItems = document.querySelectorAll('.nav-item');
+
+        menuBtn.addEventListener('click', () => {
+            menuBtn.classList.toggle('open');
+            navLinks.classList.toggle('open');
+        });
+
+        // Menü linklerine tıklandığında menüyü kapat
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                menuBtn.classList.remove('open');
+                navLinks.classList.remove('open');
+            });
+        });
+
+        // Sticky Navbar Değişimi
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Scroll Reveal (Kaydırırken Görünme Efekti)
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealOnScroll = () => {
+            for (let i = 0; i < revealElements.length; i++) {
+                const windowHeight = window.innerHeight;
+                const elementTop = revealElements[i].getBoundingClientRect().top;
+                const elementVisible = 120; // Ekranda kaç px görününce aktifleşsin
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    revealElements[i].classList.add('active');
+                }
+            }
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        // Sayfa yüklendiğinde de bir kez kontrol et
+        window.addEventListener('load', revealOnScroll);
+
+        // Aktif Menü Elemanını Takip Etme
+        const sections = document.querySelectorAll('section, footer');
+        
+        const activeMenuTracker = () => {
+            let scrollY = window.pageYOffset;
+            
+            sections.forEach(current => {
+                const sectionHeight = current.offsetHeight;
+                const sectionTop = current.offsetTop - 120; // Offset for sticky header
+                const sectionId = current.getAttribute('id');
+                
+                if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                    document.querySelector('.nav-links a[href*=' + sectionId + ']')?.classList.add('active');
+                } else {
+                    document.querySelector('.nav-links a[href*=' + sectionId + ']')?.classList.remove('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', activeMenuTracker);
+    </script>
+</body>
+</html>
