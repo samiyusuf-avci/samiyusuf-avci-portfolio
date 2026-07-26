@@ -7,6 +7,10 @@
     <meta name="description" content="Sami Yusuf Avcı - Bilgisayar Mühendisliği Öğrencisi & Yazılım Geliştirici Kişisel Portfolyosu. Kartezya stajyer deneyimi ve projeleri.">
     <title>Sami Yusuf Avcı | Portfolyo</title>
     
+    <!-- Favicon & Brand Icons -->
+    <link rel="icon" type="image/png" href="assets/logo-white.png">
+    <link rel="apple-touch-icon" href="assets/logo-white.png">
+    
     <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -164,7 +168,19 @@
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+        }
+
+        .brand-logo-img {
+            height: 34px;
+            width: auto;
+            object-fit: contain;
+            transition: var(--transition-fast);
+        }
+
+        .logo:hover .brand-logo-img {
+            transform: scale(1.08);
+            filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.4));
         }
 
         .logo span {
@@ -955,10 +971,7 @@
     <header id="header">
         <div class="container nav-container">
             <a href="#hero" class="logo">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="16 18 22 12 16 6"></polyline>
-                    <polyline points="8 6 2 12 8 18"></polyline>
-                </svg>
+                <img src="assets/logo-white.png" alt="Sami Yusuf Avcı Logo" class="brand-logo-img">
                 Sami Yusuf <span>Avcı</span>
             </a>
             
@@ -1289,7 +1302,10 @@
 
             <!-- Footer Bottom -->
             <div class="footer-bottom">
-                <p>&copy; 2026 Sami Yusuf Avcı. Tüm Hakları Saklıdır.</p>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <img src="assets/logo-white.png" alt="SYA Logo" style="height: 22px; width: auto; opacity: 0.8;">
+                    <p>&copy; 2026 Sami Yusuf Avcı. Tüm Hakları Saklıdır.</p>
+                </div>
                 <a href="#hero" class="back-to-top">
                     Yukarı Git
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
